@@ -11,3 +11,8 @@ Password                1                  2
 Role                admin                employee
 
 Use data on table to login app.
+
+In Adminview
+Add button: add new data by (Id, username, password, role)
+Remove button: remove data by Id
+Edit button: edit data by (Id, username,password, role)
