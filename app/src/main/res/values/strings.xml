@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Clocker</string>
+    <string name="generate_payroll">Generate Payroll</string>
+    <string name="clock_in">Clock In</string>
+    <string name="clock_out">Clock Out</string>
+    <string name="total_time">Total Time</string>
+    <string name="employee_username">Employee Username</string>
+    <string name="current_date_time">Current Date/Time</string>
+    <string name="report">Report</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="edit">Edit</string>
+    <string name="password">Password</string>
+    <string name="role">Role</string>
+    <string name="id">ID</string>
+    <string name="username">Username</string>
+    <string name="usernameadd">Username</string>
+    <string name="passwordadd">Password</string>
+    <string name="roleadd">Role</string>
+    <string name="idadd">ID</string>
+</resources>
