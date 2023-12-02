@@ -1,16 +1,17 @@
 package edu.utsa.cs3443.clocker.model;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class ReportModel {
-
-
-
+    /**
+     * Calculates the total time between clock in and clock out timestamps.
+     *
+     * @param clockInTimeMillis  The timestamp in milliseconds for clock in.
+     * @param clockOutTimeMillis The timestamp in milliseconds for clock out.
+     * @return A formatted string representing the total time worked, or "N/A" if clock out has not occurred.
+     */
     public String calculateTotalTime(long clockInTimeMillis, long clockOutTimeMillis) {
         // Implement the calculation logic
         // For example:

@@ -22,14 +22,24 @@ import java.io.PrintWriter;
 
 
 import edu.utsa.cs3443.clocker.R;
-
+/**
+ * Initializes the AdminModel with the given Android context.
+ *
+ */
 public class AdminModel {
     private Context context;
 
     public AdminModel(Context context) {
         this.context = context;
     }
-
+    /**
+     * Appends user account data to the CSV file.
+     *
+     * @param id       The ID of the user.
+     * @param username The username of the user.
+     * @param password The password of the user.
+     * @param role     The role of the user.
+     */
     public void appendDataToCSV(String id, String username, String password, String role) {
         try {
             File file = new File(context.getFilesDir(), "accounts.csv");
@@ -50,7 +60,11 @@ public class AdminModel {
             Log.e("AppendData", "Error appending data to CSV: " + e.getMessage());
         }
     }
-
+    /**
+     * Removes user account data from the CSV file based on the specified ID.
+     *
+     * @param idToRemove The ID of the user to be removed.
+     */
     public void removeDataFromCSV(String idToRemove) {
         try {
             File file = new File(context.getFilesDir(), "accounts.csv");
@@ -93,6 +107,14 @@ public class AdminModel {
         }
     }
 
+    /**
+     * Edits user account data in the CSV file based on the specified ID.
+     *
+     * @param idToEdit      The ID of the user to be edited.
+     * @param newUsername   The new username for the user.
+     * @param newPassword   The new password for the user.
+     * @param newRole       The new role for the user.
+     */
     public void editDataInCSV(String idToEdit, String newUsername, String newPassword, String newRole) {
         try {
             File file = new File(context.getFilesDir(), "accounts.csv");
@@ -130,7 +152,9 @@ public class AdminModel {
             Log.e("EditData", "Error editing data in CSV: " + e.getMessage());
         }
     }
-
+    /**
+     * Logs the content of the CSV file.
+     */
     public void logFileContent() {
         try {
             FileReader fileReader = new FileReader(new File(context.getFilesDir(), "accounts.csv"));
@@ -150,7 +174,11 @@ public class AdminModel {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Displays the content of the CSV file in a TableLayout in the specified activity.
+     *
+     * @param activity The activity in which to display the CSV content.
+     */
     public void displayCSVContent(Activity activity) {
         try {
             File internalFile = new File(context.getFilesDir(), "accounts.csv");
@@ -200,7 +228,12 @@ public class AdminModel {
             e.printStackTrace();
             Log.e("FileRead", "Error reading file: " + e.getMessage());
         }
-    }
+    }/**
+     * Removes a TableRow from the TableLayout based on the specified ID.
+     *
+     * @param idToRemove   The ID of the user whose TableRow should be removed.
+     * @param tableLayout  The TableLayout containing the TableRows.
+     */
     public void removeTableRow(String idToRemove, TableLayout tableLayout) {
         for (int i = 0; i < tableLayout.getChildCount(); i++) {
             View view = tableLayout.getChildAt(i);
@@ -219,7 +252,12 @@ public class AdminModel {
                 }
             }
         }
-    }
+    } /**
+     * Copies the CSV file from the assets folder to the internal storage.
+     *
+     * @param destinationFile The destination file in the internal storage.
+     * @throws IOException If an error occurs during file copy.
+     */
     public void copyFileFromAssets(File destinationFile) throws IOException {
         InputStream inputStream = context.getAssets().open("accounts.csv");
         FileOutputStream outputStream = new FileOutputStream(destinationFile);

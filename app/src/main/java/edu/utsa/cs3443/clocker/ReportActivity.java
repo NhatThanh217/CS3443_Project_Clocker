@@ -1,12 +1,16 @@
 
 package edu.utsa.cs3443.clocker;
-
+/**
+ * CS 3443_ Application Programing
+ * Fall 2023
+ * @author Ho, Nhat Thanh (pkt062)
+ * Project Clocker
+ */
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +25,9 @@ public class ReportActivity extends AppCompatActivity {
     private TableLayout reportTable;
     private ScrollView reportScrollView;
     private ReportController reportController;
-
+    /**
+     * Initializes the ReportActivity, sets up UI components, and handles button click events.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +63,9 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Generates and displays a simple toast message indicating that the payroll has been generated.
+     */
     private void generatePayroll() {
         //  display a simple toast message
         Toast.makeText(this, "Payroll generated!", Toast.LENGTH_SHORT).show();

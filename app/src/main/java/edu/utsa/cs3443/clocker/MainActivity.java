@@ -1,4 +1,10 @@
 package edu.utsa.cs3443.clocker;
+/**
+ * CS 3443_ Application Programing
+ * Fall 2023
+ * @author Ho, Nhat Thanh (pkt062)
+ * Project Clocker
+ */
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String CSV_FILE_NAME = "accounts.csv";
 
+    /**
+     * Initializes the main activity, sets up UI components, and establishes the controller.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,34 +93,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    /**
+     * Retrieves the entered username from the UI.
+     *
+     * @return The entered username.
+     */
     public String getUsername() {
         return usernameEditText.getText().toString().trim();
     }
-
+    /**
+     * Retrieves the entered password from the UI.
+     *
+     * @return The entered password.
+     */
     public String getPassword() {
         return passwordEditText.getText().toString().trim();
     }
-
+    /**
+     * Displays a message indicating incorrect username or password.
+     */
     public void showIncorrectCredentialsMessage() {
         Toast.makeText(this, "Incorrect username or password. Try again.", Toast.LENGTH_SHORT).show();
     }
-
-    public void navigateToAdminView(String username) {
-        Intent intent = new Intent(this, AdminActivity.class);
-        intent.putExtra("USERNAME", username);
-        startActivity(intent);
-    }
-
-    public void navigateToEmployeeView(String username) {
-        Intent intent = new Intent(this, EmployeeActivity.class);
-        intent.putExtra("USERNAME", username);
-        startActivity(intent);
-    }
-
-
+    /**
+     * Requests focus on the username field in the UI.
+     */
     public void requestFocusOnUsername() {
         usernameEditText.requestFocus();
     }
+    /**
+     * Displays the "Forgot Password" dialog with contact information for help.
+     */
     // Method to show the "Forgot Password" dialog
     private void showForgotPasswordDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -125,6 +137,11 @@ public class MainActivity extends AppCompatActivity {
         });
         builder.show();
     }
+    /**
+     * Sets the greeting message based on the time of day.
+     *
+     * @param greetingTextView The TextView for displaying the greeting.
+     */
     private void setGreeting(TextView greetingTextView) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH", Locale.getDefault());
         int currentHour = Integer.parseInt(timeFormat.format(new Date()));
@@ -142,32 +159,19 @@ public class MainActivity extends AppCompatActivity {
         }
         greetingTextView.setText(greeting + quote);
     }
-    private void onLoginButtonClick() {
-        String username = usernameEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
-
-        List<String[]> accounts = loadUserAccounts();
-
-        String role = getRole(username, password, accounts);
-
-        if (role != null) {
-            // Clear credentials
-            clearCredentials();
-            // Set focus to the username field
-            usernameEditText.requestFocus();
-
-            navigateToViewBasedOnRole(role,username);
-        } else {
-            Toast.makeText(MainActivity.this, "Incorrect username or password. Try again.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
+    /**
+     * Clears the username and password fields in the UI.
+     */
     // Clear username and password fields
     public void clearCredentials() {
         usernameEditText.getText().clear();
         passwordEditText.getText().clear();
     }
-
+    /**
+     * Loads user accounts from the CSV file.
+     *
+     * @return The list of user accounts.
+     */
     private List<String[]> loadUserAccounts() {
         List<String[]> accounts = new ArrayList<>();
 
@@ -188,30 +192,4 @@ public class MainActivity extends AppCompatActivity {
 
         return accounts;
     }
-
-    //accounts.csv(ID,username,password,role)
-    private String getRole(String username, String password, List<String[]> accounts) {
-        for (String[] account : accounts) {
-            if (account.length == 4 && account[1].equals(username) && account[2].equals(password)) {
-                return account[3]; // Return the role
-            }
-        }
-        return null; // Return null if no match is found
-    }
-
-    private void navigateToViewBasedOnRole(String role, String username) {
-        Intent intent;
-        if (role.equals("admin")) {
-            intent = new Intent(MainActivity.this, AdminActivity.class);
-            intent.putExtra("USERNAME", username); // Pass the username as an extra
-
-            // case "employee":
-        } else {
-            intent = new Intent(MainActivity.this, EmployeeActivity.class);
-            intent.putExtra("USERNAME", username); // Pass the username as an extra
-        }
-
-        startActivity(intent);
-    }
-
 }

@@ -1,5 +1,10 @@
 package edu.utsa.cs3443.clocker;
-
+/**
+ * CS 3443_ Application Programing
+ * Fall 2023
+ * @author Ho, Nhat Thanh (pkt062)
+ * Project Clocker
+ */
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +29,9 @@ public class EmployeeActivity extends AppCompatActivity {
     private Button reportButton;
 
     private EmployeeController controller;
-
+    /**
+     * Initializes the EmployeeActivity, sets up UI components, and handles button click events.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,27 +75,41 @@ public class EmployeeActivity extends AppCompatActivity {
 
         clockOutButton.setEnabled(false);
     }
-
+    /**
+     * Updates the clock-in time displayed in the UI.
+     */
     public void updateClockInTime() {
         clockInTimeTextView.setText("Clock-in Time: " + controller.getClockInTime());
     }
-
+    /**
+     * Updates the clock-out time displayed in the UI.
+     */
     public void updateClockOutTime() {
         clockOutTimeTextView.setText("Clock-out Time: " + controller.getClockOutTime());
     }
-
+    /**
+     * Enables the clock-out button in the UI.
+     */
     public void enableClockOutButton() {
         clockOutButton.setEnabled(true);
     }
-
+    /**
+     * Disables the clock-out button in the UI.
+     */
     public void disableClockOutButton() {
         clockOutButton.setEnabled(false);
     }
-
+    /**
+     * Retrieves the employee information displayed in the UI.
+     *
+     * @return The employee information.
+     */
     public String getEmployeeInfo() {
         return employeeInfoTextView.getText().toString();
     }
-
+    /**
+     * Updates the date and time displayed in the UI.
+     */
     private void updateDateTime() {
         // Get the current date and time directly in the EmployeeActivity
         String currentDateTime = getCurrentDateTime(); // Replace this with the actual method call
@@ -96,6 +117,11 @@ public class EmployeeActivity extends AppCompatActivity {
         // Update the date/time TextView
         dateTimeTextView.setText("Current Date/Time: " + currentDateTime);
     }
+    /**
+     * Gets the current date and time formatted as a string.
+     *
+     * @return The formatted current date and time.
+     */
     // Replace this with the actual method to get the formatted date/time
     private String getCurrentDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());

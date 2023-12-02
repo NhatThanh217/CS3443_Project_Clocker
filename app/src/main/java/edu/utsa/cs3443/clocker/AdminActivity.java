@@ -1,5 +1,10 @@
 package edu.utsa.cs3443.clocker;
-
+/**
+ * CS 3443_ Application Programing
+ * Fall 2023
+ * @author Ho, Nhat Thanh (pkt062)
+ * Project Clocker
+ */
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,7 +25,12 @@ import edu.utsa.cs3443.clocker.controller.AdminController;
 public class AdminActivity extends AppCompatActivity {
     private AdminController controller;
     private TextView dateTimeTextView;
-
+    /**
+     * Called when the activity is first created. Responsible for initializing the activity components,
+     * setting up click listeners for buttons, and displaying the content of the CSV file.
+     *
+     * @param savedInstanceState A Bundle containing the activity's previously saved state, if available.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +82,9 @@ public class AdminActivity extends AppCompatActivity {
         // Display data of file accounts.csv when the activity is created
         controller.displayCSVContent(this);
     }
-
+    /**
+     * Displays a dialog box for adding data to the CSV file when the "Add" button is clicked.
+     */
     private void showAddDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -111,6 +123,9 @@ public class AdminActivity extends AppCompatActivity {
         dialogBuilder.create().show();
     }
 
+    /**
+     * Displays a dialog box for removing data from the CSV file when the "Remove" button is clicked.
+     */
     private void showRemoveDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -140,7 +155,9 @@ public class AdminActivity extends AppCompatActivity {
 
         dialogBuilder.create().show();
     }
-
+    /**
+     * Displays a dialog box for editing data in the CSV file when the "Edit" button is clicked.
+     */
     private void showEditDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -181,7 +198,9 @@ public class AdminActivity extends AppCompatActivity {
         // Clear the hint text to allow the user to input the ID
         idEditText.setHint("Enter ID to Edit");
     }
-
+    /**
+     * Updates the date and time displayed on the screen to the current date and time.
+     */
     private void updateDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         String currentDateTime = dateFormat.format(new Date());

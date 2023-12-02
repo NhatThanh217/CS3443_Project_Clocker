@@ -23,6 +23,12 @@ public class ReportController {
     public ReportController() {
         this.reportModel = new ReportModel();
     }
+    /**
+     * Converts a comma-separated string of times into a list of long values.
+     *
+     * @param timesString The comma-separated string of times.
+     * @return The list of long values representing times.
+     */
     public List<Long> convertToLongList(String timesString) {
         List<Long> timesList = new ArrayList<>();
         String[] timesArray = timesString.split(",");
@@ -33,6 +39,14 @@ public class ReportController {
         }
         return timesList;
     }
+    /**
+     * Displays clock times in a report table and scrolls to the bottom of the ScrollView.
+     *
+     * @param context          The context of the activity.
+     * @param clockTimesList   The list of long values representing clock times.
+     * @param reportTable      The TableLayout for displaying the report.
+     * @param reportScrollView The ScrollView containing the report table.
+     */
     public void displayClockTimes(Context context, List<Long> clockTimesList, TableLayout reportTable, ScrollView reportScrollView) {
         // Iterate through the clock times list and add rows to the table
         for (int i = 0; i < clockTimesList.size(); i += 2) {
@@ -61,7 +75,13 @@ public class ReportController {
             }
         });
     }
-
+    /**
+     * Adds a TextView with specified text to a TableRow, applying padding and a background border.
+     *
+     * @param row     The TableRow to which the TextView is added.
+     * @param context The context of the activity.
+     * @param text    The text to be displayed in the TextView.
+     */
     public void addTextViewToRow(TableRow row, Context context, String text) {
         TextView textView = new TextView(context);
         textView.setText(text);
@@ -70,7 +90,12 @@ public class ReportController {
         textView.setBackgroundResource(R.drawable.cell_border);
         row.addView(textView);
     }
-
+    /**
+     * Formats a timestamp in milliseconds into a string with the specified date format.
+     *
+     * @param timestampMillis The timestamp in milliseconds.
+     * @return The formatted timestamp string.
+     */
     private String formatTimestamp(long timestampMillis) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         Date date = new Date(timestampMillis);
